@@ -2,6 +2,7 @@ package com.pi.estacaometeorologica.controller;
 
 import com.pi.estacaometeorologica.dto.dado.DadoCadastro;
 import com.pi.estacaometeorologica.infra.exceptions.dado.DadoMenorQueZeroException;
+import com.pi.estacaometeorologica.infra.exceptions.iot.IotNaoCadastradoException;
 import com.pi.estacaometeorologica.service.DadoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -21,7 +22,9 @@ public class DadoController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity cadastrar(@RequestBody @Valid DadoCadastro dadoCadastro) throws DadoMenorQueZeroException {
+    public ResponseEntity cadastrar(@RequestBody @Valid DadoCadastro dadoCadastro)
+            throws DadoMenorQueZeroException, IotNaoCadastradoException {
+
         return ResponseEntity.ok(service.cadastrarDado(dadoCadastro));
     }
 }
