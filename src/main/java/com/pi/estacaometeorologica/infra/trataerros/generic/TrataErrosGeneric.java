@@ -12,7 +12,7 @@ public class TrataErrosGeneric {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity trataErro400(){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados informados inválido!"); }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados informados inválidos!"); }
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity trataErro404(){
