@@ -1,10 +1,14 @@
 package com.pi.estacaometeorologica.entity;
 
+import com.pi.estacaometeorologica.dto.dado.DadoCadastro;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 @Entity
 @Table(name="dados")
@@ -24,13 +28,27 @@ public class Dado {
     private Iot iot;
 
     @Column(name = "temperatura", nullable = false)
-    private float temperatura;
+    private Float temperatura;
 
     @Column(name = "umidade", nullable = false)
-    private float umidade;
+    private Float umidade;
 
     @Column(name = "pressao", nullable = false)
-    private float pressao;
+    private Float pressao;
+
+    @Column(name = "altitude", nullable = false)
+    private Float altitude;
+
+    @Column(name = "data_registro", nullable = false)
+    private LocalDate dataRegistro;
 
 
+    public Dado(DadoCadastro dado) {
+        this.iot = new Iot(dado.idIot());
+        this.temperatura = dado.temperatura();
+        this.umidade = dado.umidade();
+        this.pressao = dado.pressao();
+        this.altitude = dado.altitude();
+        this.dataRegistro = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
+    }
 }
