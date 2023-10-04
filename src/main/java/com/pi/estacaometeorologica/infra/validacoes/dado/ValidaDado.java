@@ -18,14 +18,11 @@ public class ValidaDado {
             message.append("umidade, ");
         }
 
-        if(dados.getTemperatura() < 0){
-            message.append("temperatura, ");
-        }
 
         message.delete(message.length() -2,message.length());
         message.append(".");
 
-        if(dados.getTemperatura() < 0 || dados.getAltitude() < 0 || dados.getUmidade() < 0 || dados.getPressao() < 0) {
+        if(dados.getAltitude() < 0 || dados.getUmidade() < 0 || dados.getPressao() < 0) {
             throw new DadoMenorQueZeroException(message.toString());
         }
 

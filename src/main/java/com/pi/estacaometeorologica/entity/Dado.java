@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZoneId;
 
 @Entity
@@ -40,7 +40,7 @@ public class Dado {
     private Float altitude;
 
     @Column(name = "data_registro", nullable = false)
-    private LocalDateTime dataRegistro;
+    private LocalDate dataRegistro;
 
 
     public Dado(DadoCadastro dado) {
@@ -49,6 +49,6 @@ public class Dado {
         this.umidade = dado.umidade();
         this.pressao = dado.pressao();
         this.altitude = dado.altitude();
-        this.dataRegistro = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+        this.dataRegistro = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
     }
 }

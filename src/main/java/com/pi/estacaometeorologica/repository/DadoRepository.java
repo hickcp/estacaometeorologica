@@ -4,11 +4,11 @@ import com.pi.estacaometeorologica.entity.Dado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface DadoRepository extends JpaRepository<Dado, Long> {
 
     @Query("SELECT d FROM Dado d WHERE d.dataRegistro BETWEEN :dataInicio AND :dataFim AND d.iot.id = :idIot ORDER BY d.dataRegistro ASC ")
-    List<Dado> getDados(LocalDateTime dataInicio, LocalDateTime dataFim, Long idIot);
+    List<Dado> getDados(LocalDate dataInicio, LocalDate dataFim, Long idIot);
 }
