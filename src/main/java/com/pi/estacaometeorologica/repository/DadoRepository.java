@@ -17,7 +17,7 @@ public interface DadoRepository extends JpaRepository<Dado, Long> {
     @Query("""
             SELECT d FROM Dado d
             WHERE d.iot.id = :idIot
-            ORDER BY d.dataRegistro DESC      
+            ORDER BY d.id DESC      
             """)
     List<Dado> getDado(Long idIot, Pageable pageable);
 }

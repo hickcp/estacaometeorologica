@@ -54,7 +54,7 @@ public class DadoController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate dataInicio,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate dataFim,
             @RequestParam Long idIot) throws DadoNaoEncontradoNaDataException, DataFuturaInformadaException {
-        return ResponseEntity.ok(service.getMediaMensal(dataInicio, dataFim, idIot));
+        return ResponseEntity.ok(service.getMediaAnual(dataInicio, dataFim, idIot));
     }
 
     @GetMapping("/atual/{idIot}")

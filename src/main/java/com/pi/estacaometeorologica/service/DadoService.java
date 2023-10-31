@@ -99,7 +99,7 @@ public class DadoService {
             throw new DadoNaoEncontradoNaDataException("Não há dados para a data informada");
         }
 
-        List<DadoParaMedia> dadoParaMediaAnual = fazMediaDado(dadosParaMedia, Utils.MEDIA_MENSAL);
+        List<DadoParaMedia> dadoParaMediaAnual = fazMediaDado(dadosParaMedia, Utils.MEDIA_ANUAL);
         return dadoParaMediaAnual;
     }
 
