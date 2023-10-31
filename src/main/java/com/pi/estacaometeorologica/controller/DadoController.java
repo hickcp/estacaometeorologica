@@ -1,6 +1,7 @@
 package com.pi.estacaometeorologica.controller;
 
 import com.pi.estacaometeorologica.dto.dado.DadoCadastro;
+import com.pi.estacaometeorologica.dto.dado.DadoDetalhamento;
 import com.pi.estacaometeorologica.dto.dado.DadoParaMedia;
 import com.pi.estacaometeorologica.infra.exceptions.dado.DadoMenorQueZeroException;
 import com.pi.estacaometeorologica.infra.exceptions.dado.DadoNaoEncontradoNaDataException;
@@ -53,6 +54,11 @@ public class DadoController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate dataInicio,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate dataFim,
             @RequestParam Long idIot) throws DadoNaoEncontradoNaDataException, DataFuturaInformadaException {
-        return ResponseEntity.ok(service.getMediaMensal(dataInicio, dataFim, idIot));
+        return ResponseEntity.ok(service.getMediaAnual(dataInicio, dataFim, idIot));
+    }
+
+    @GetMapping("/atual/{idIot}")
+    public ResponseEntity<DadoDetalhamento> getDado(@PathVariable Long idIot) throws DadoNaoEncontradoNaDataException {
+        return ResponseEntity.ok(service.getDado(idIot));
     }
 }

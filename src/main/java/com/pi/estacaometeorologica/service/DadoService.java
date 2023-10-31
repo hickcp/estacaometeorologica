@@ -14,6 +14,8 @@ import com.pi.estacaometeorologica.repository.DadoRepository;
 import com.pi.estacaometeorologica.repository.IotRepository;
 import com.pi.estacaometeorologica.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -41,6 +43,15 @@ public class DadoService {
         repository.save(dados);
 
         return new DadoDetalhamento(dados, iot);
+    }
+
+    public DadoDetalhamento getDado(Long idIot) throws DadoNaoEncontradoNaDataException {
+        List<Dado> dados = repository.getDado(idIot, PageRequest.of(0, 1));
+        if(dados == null){
+            throw new DadoNaoEncontradoNaDataException("Não há dados para a data informada");
+        }
+        Dado dado = dados.get(0);
+        return new DadoDetalhamento(dado, dado.getIot());
     }
 
     public List<DadoParaMedia> getMediaDiaria(LocalDate dataInicio, LocalDate dataFim, Long idIot)
@@ -88,7 +99,7 @@ public class DadoService {
             throw new DadoNaoEncontradoNaDataException("Não há dados para a data informada");
         }
 
-        List<DadoParaMedia> dadoParaMediaAnual = fazMediaDado(dadosParaMedia, Utils.MEDIA_MENSAL);
+        List<DadoParaMedia> dadoParaMediaAnual = fazMediaDado(dadosParaMedia, Utils.MEDIA_ANUAL);
         return dadoParaMediaAnual;
     }
 
